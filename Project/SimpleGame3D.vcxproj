@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\Game\GameObjects\GameObject.h" />
     <ClInclude Include="Source\Scene\SceneMain.h" />
     <ClInclude Include="Source\System\Animation.h" />
     <ClInclude Include="Source\System\Camera.h" />
@@ -32,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Scene\SceneMain.cpp" />
     <ClCompile Include="Source\System\Animation.cpp" />
