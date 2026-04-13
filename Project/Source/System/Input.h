@@ -60,6 +60,6 @@ private:
 	float ConvertTriggerInput(unsigned char trigger);
 
 private:
-	XINPUT_STATE m_nowPadInput;
-	XINPUT_STATE m_prevPadInput;
+	XINPUT_STATE m_nowPadInput = { 0 };
+	XINPUT_STATE m_prevPadInput = { 0 };
 };
