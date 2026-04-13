@@ -1,5 +1,7 @@
 ﻿#include "SceneMain.h"
 #include "DxLib.h"
+#include "../System/Camera.h"
+#include "../System/Input.h"
 
 SceneMain::SceneMain() :
 	m_frameCount(0)
@@ -12,22 +14,19 @@ SceneMain::~SceneMain()
 
 void SceneMain::Init()
 {
-	// カリングの設定
-	SetUseBackCulling(true);
+	m_pInput = std::make_shared<Input>();
 
-	// Zバッファの設定
-	SetUseZBuffer3D(true);	// Zバッファを使います
-	SetWriteZBuffer3D(true);	// 描画する物体はZバッファにも距離を書き込む
-
-	// カメラの設定
-	SetCameraPositionAndTarget_UpVecY(VGet(0.0f, 300.0f, -700.0f), VGet(0.0f, 0.0f, 0.0f));
-	SetupCamera_Perspective(DX_PI_F / 3.0f);
-	SetCameraNearFar(200.0f, 1500.0f);
+	m_pCamera = std::make_shared<Camera>(*m_pInput);
+	m_pCamera->Init();
 }
 
 void SceneMain::Update()
 {
 	m_frameCount++;
+
+	m_pInput->Update();
+
+	m_pCamera->Update();
 }
 
 void SceneMain::Draw()
