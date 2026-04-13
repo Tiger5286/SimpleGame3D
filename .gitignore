@@ -30,3 +30,6 @@
 *.app
 
 log.txt
+.vs
+x64
+SimpleGame3D
