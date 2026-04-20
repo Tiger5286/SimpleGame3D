@@ -24,6 +24,11 @@ VECTOR Vector3::ToDxLib() const
 	return { x,y,z };
 }
 
+Vector3 Vector3::FromDxLib(VECTOR vec)
+{
+	return Vector3(vec.x, vec.y, vec.z);
+}
+
 void Vector3::Draw(int x, int y) const
 {
 	DrawFormatString(x, y, 0xffffff, L"x:%.2f,y:%.2f,z:%.2f", this->x, this->y, this->z);

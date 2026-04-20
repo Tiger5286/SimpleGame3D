@@ -3,6 +3,7 @@
 
 class Input;
 class Camera;
+class Player;
 
 class SceneMain
 {
@@ -19,7 +20,10 @@ private:
 private:
 	int m_frameCount;
 
+	int m_mapHandle = -1;
+
 	std::shared_ptr<Input> m_pInput;
 	std::shared_ptr<Camera> m_pCamera;
+	std::shared_ptr<Player> m_pPlayer;
 };
 

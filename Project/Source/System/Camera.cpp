@@ -16,11 +16,11 @@ namespace
 	constexpr float kFar = 5000.0f;
 
 	// オフセット
-	const Vector3 kTargetOffset = { 0.0f,300.0f,0.0f };
+	const Vector3 kTargetOffset = { 0.0f,100.0f,0.0f };
 	const Vector3 kPosOffset = { 0.0f,400.0f,0.0f };
 
 	// 注視点との距離
-	constexpr float kTargetDis = 1000.0f;
+	constexpr float kTargetDis = 700.0f;
 
 	// カメラの回転速度
 	constexpr float kRotSpeed = 0.05f;
@@ -84,7 +84,7 @@ void Camera::Update()
 	auto mtx = transMtx * rotYMtx * rotXMtx;
 	// ベクトルを変形
 	pos = mtx * pos;
-	m_pos.Lerp(pos, 0.2f);	// カメラの位置を滑らかに移動させる
+	m_pos = pos;
 
 	// 位置と注視点を反映
 	SetCameraPositionAndTarget_UpVecY(m_pos.ToDxLib(), m_target.ToDxLib());

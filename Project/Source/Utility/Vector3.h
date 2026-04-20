@@ -16,6 +16,8 @@ public:
 
 	// DxLib用のベクトルに変換して返す
 	VECTOR ToDxLib() const;
+	// DxLib用のベクトルをこのクラスのベクトルに変換して返す
+	static Vector3 FromDxLib(VECTOR vec);
 
 	// ベクトルの要素を描画する
 	void Draw(int x,int y) const;
