@@ -25,7 +25,6 @@
     <ClInclude Include="Source\Scene\SceneMain.h" />
     <ClInclude Include="Source\System\Camera.h" />
     <ClInclude Include="Source\System\Input.h" />
-    <ClInclude Include="Source\System\SkyBox.h" />
     <ClInclude Include="Source\Utility\Matrix4x4.h" />
     <ClInclude Include="Source\Utility\Sphere.h" />
     <ClInclude Include="Source\Utility\Vector3.h" />
@@ -37,7 +36,6 @@
     <ClCompile Include="Source\Scene\SceneMain.cpp" />
     <ClCompile Include="Source\System\Camera.cpp" />
     <ClCompile Include="Source\System\Input.cpp" />
-    <ClCompile Include="Source\System\SkyBox.cpp" />
     <ClCompile Include="Source\Utility\Matrix4x4.cpp" />
     <ClCompile Include="Source\Utility\Sphere.cpp" />
     <ClCompile Include="Source\Utility\Vector3.cpp" />

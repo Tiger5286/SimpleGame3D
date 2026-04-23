@@ -24,7 +24,9 @@ public:
 
 
 private:
+	void Gravity();
 	void Move();
+	void Jump();
 
 private:
 	Input& m_input;
@@ -32,6 +34,8 @@ private:
 	Vector3 m_pos;
 	Vector3 m_vel;
 	Sphere m_sphere;
+
+	bool m_isGround = false;
 
 	float m_cameraAngle = 0.0f;
 };
