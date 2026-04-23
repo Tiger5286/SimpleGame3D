@@ -17,17 +17,17 @@ public:
 	static Matrix4x4 Zero();
 
 	// X軸回転行列を生成する。angleは弧度法で指定する。
-	static Matrix4x4 GetRotXMatrix(float angle);
+	static Matrix4x4 GetRotX(float angle);
 	// Y軸回転行列を生成する。angleは弧度法で指定する。
-	static Matrix4x4 GetRotYMatrix(float angle);
+	static Matrix4x4 GetRotY(float angle);
 	// Z軸回転行列を生成する。angleは弧度法で指定する。
-	static Matrix4x4 GetRotZMatrix(float angle);
+	static Matrix4x4 GetRotZ(float angle);
 
 	// 平行移動行列を生成する関数。
-	static Matrix4x4 GetTranslateMatrix(Vector3 v);
+	static Matrix4x4 GetTranslate(Vector3 v);
 
 	// 拡大縮小行列を生成する関数。
-	static Matrix4x4 GetScaleMatrix(Vector3 v);
+	static Matrix4x4 GetScale(Vector3 v);
 
 	// DxLibの行列形式に変換する関数。DxLibの行列は列行になっているため、行列の要素を入れ替える必要がある。
 	MATRIX ToDxLib() const;

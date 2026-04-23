@@ -19,7 +19,7 @@ void SceneMain::Init()
 {
 	SetBackgroundColor(0,255,255);
 
-	m_mapHandle = MV1LoadModel(L"map.mv1");
+	m_mapHandle = MV1LoadModel(L"data/map.mv1");
 	MV1SetupCollInfo(m_mapHandle);
 
 	m_pInput = std::make_shared<Input>();
@@ -56,7 +56,7 @@ void SceneMain::Update()
 
 	// ライトの方向を設定
 	auto lightDir = Vector3(0.0f, -1.5f, 1.0f);
-	lightDir = Matrix4x4::GetRotYMatrix(m_pCamera->GetAngleY()) * lightDir;
+	lightDir = Matrix4x4::GetRotY(m_pCamera->GetAngleY()) * lightDir;
 	SetLightDirection(lightDir.ToDxLib());
 }
 

@@ -36,7 +36,7 @@ Matrix4x4 Matrix4x4::Zero()
 					 0.0f, 0.0f, 0.0f, 0.0f);
 }
 
-Matrix4x4 Matrix4x4::GetRotXMatrix(float angle)
+Matrix4x4 Matrix4x4::GetRotX(float angle)
 {
 	float cos = cosf(angle);
 	float sin = sinf(angle);
@@ -46,7 +46,7 @@ Matrix4x4 Matrix4x4::GetRotXMatrix(float angle)
 					 0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-Matrix4x4 Matrix4x4::GetRotYMatrix(float angle)
+Matrix4x4 Matrix4x4::GetRotY(float angle)
 {
 	float cos = cosf(angle);
 	float sin = sinf(angle);
@@ -56,7 +56,7 @@ Matrix4x4 Matrix4x4::GetRotYMatrix(float angle)
 					 0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-Matrix4x4 Matrix4x4::GetRotZMatrix(float angle)
+Matrix4x4 Matrix4x4::GetRotZ(float angle)
 {
 	float cos = cosf(angle);
 	float sin = sinf(angle);
@@ -66,7 +66,7 @@ Matrix4x4 Matrix4x4::GetRotZMatrix(float angle)
 					 0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-Matrix4x4 Matrix4x4::GetTranslateMatrix(Vector3 v)
+Matrix4x4 Matrix4x4::GetTranslate(Vector3 v)
 {
 	Matrix4x4 ans = Identity();
 	ans.m03 = v.x;
@@ -75,7 +75,7 @@ Matrix4x4 Matrix4x4::GetTranslateMatrix(Vector3 v)
 	return ans;
 }
 
-Matrix4x4 Matrix4x4::GetScaleMatrix(Vector3 v)
+Matrix4x4 Matrix4x4::GetScale(Vector3 v)
 {
 	Matrix4x4 ans = Identity();
 	ans.m00 = v.x;

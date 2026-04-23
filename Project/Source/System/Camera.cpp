@@ -77,9 +77,9 @@ void Camera::Update()
 	// ベクトルの長さを注視点との距離にする
 	pos *= kTargetDis;
 	// 変形用の行列を生成
-	auto rotYMtx = Matrix4x4::GetRotYMatrix(m_angleY);
-	auto rotXMtx = Matrix4x4::GetRotXMatrix(m_angleX);
-	auto transMtx = Matrix4x4::GetTranslateMatrix(m_playerPos + kPosOffset);
+	auto rotYMtx = Matrix4x4::GetRotY(m_angleY);
+	auto rotXMtx = Matrix4x4::GetRotX(m_angleX);
+	auto transMtx = Matrix4x4::GetTranslate(m_playerPos + kPosOffset);
 	// 行列を合成
 	auto mtx = transMtx * rotYMtx * rotXMtx;
 	// ベクトルを変形
