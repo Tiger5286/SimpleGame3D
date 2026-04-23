@@ -23,6 +23,7 @@
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\Scene\SceneMain.h" />
+    <ClInclude Include="Source\System\Animation.h" />
     <ClInclude Include="Source\System\Camera.h" />
     <ClInclude Include="Source\System\Input.h" />
     <ClInclude Include="Source\Utility\Matrix4x4.h" />
@@ -34,6 +35,7 @@
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Scene\SceneMain.cpp" />
+    <ClCompile Include="Source\System\Animation.cpp" />
     <ClCompile Include="Source\System\Camera.cpp" />
     <ClCompile Include="Source\System\Input.cpp" />
     <ClCompile Include="Source\Utility\Matrix4x4.cpp" />
@@ -72,7 +74,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -148,13 +150,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>c:\DxLib_VC\プロジェクトに追加すべきファイル_VC用</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../DxLib_h</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>c:\DxLib_VC\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../DxLib_h</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

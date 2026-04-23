@@ -1,6 +1,7 @@
 #pragma once
 #include "../Utility/Vector3.h"
 #include "../Utility/Sphere.h"
+#include "../System/Animation.h"
 
 class Input;
 
@@ -22,16 +23,28 @@ public:
 
 	void SetCameraAngle(float cameraAngle) { m_cameraAngle = cameraAngle; }
 
+	enum class State
+	{
+		Idle,
+		Run,
+		Fall,
+
+		Num
+	};
 
 private:
 	void Gravity();
 	void Move();
 	void Jump();
 
+	bool TriggeredChangeState(State state) const;
+
 private:
 	Input& m_input;
 
 	int m_modelHandle = -1;
+
+	Animation m_anim;
 
 	Vector3 m_pos;
 	Vector3 m_vel;
@@ -41,4 +54,7 @@ private:
 	float m_angle = 0.0f;
 
 	float m_cameraAngle = 0.0f;
+
+	State m_state = State::Idle;
+	State m_prevState = State::Idle;
 };

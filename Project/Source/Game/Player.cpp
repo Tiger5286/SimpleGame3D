@@ -28,8 +28,10 @@ Player::~Player()
 
 void Player::Init()
 {
+	// モデルをロード
 	m_modelHandle = MV1LoadModel(L"data/Player.mv1");
-	MV1AttachAnim(m_modelHandle, 1);
+	// アニメーションを初期化
+	m_anim.Init(m_modelHandle, L"Player|Run");
 }
 
 void Player::End()
@@ -39,9 +41,14 @@ void Player::End()
 
 void Player::Update()
 {
+	// 前回の状態を保存
+	m_prevState = m_state;
+
 	// y以外の速度を減衰させる
 	m_vel.x *= kVelocityDecay;
 	m_vel.z *= kVelocityDecay;
+	if (abs(m_vel.x) < 0.001f) m_vel.x = 0.0f;
+	if (abs(m_vel.z) < 0.001f) m_vel.z = 0.0f;
 
 	// 重力処理
 	Gravity();
@@ -63,6 +70,41 @@ void Player::Update()
 
 	// 当たり判定の位置を設定
 	m_sphere.SetPos(m_pos + Vector3(0.0f, kSphereRadius, 0.0f));
+
+	// ステートの更新
+	// XZ成分のみの速度ベクトルを生成
+	Vector3 velXZ = m_vel;
+	velXZ.y = 0.0f;
+	// 現在の状態を元にステートを更新
+	if (abs(m_vel.y) > 1.0f || !m_isGround)
+	{
+		m_state = State::Fall;
+	}
+	else if (velXZ.SquaredLength() > 1.0f)
+	{
+		m_state = State::Run;
+	}
+	else
+	{
+		m_state = State::Idle;
+	}
+
+	// ステートを元にアニメーションを変更
+	if (TriggeredChangeState(State::Idle))
+	{
+		m_anim.ChangeAnim(L"Player|Idle");
+	}
+	if (TriggeredChangeState(State::Run))
+	{
+		m_anim.ChangeAnim(L"Player|Run");
+	}
+	if (TriggeredChangeState(State::Fall))
+	{
+		m_anim.ChangeAnim(L"Player|Fall");
+	}
+
+	// アニメーションを更新
+	m_anim.Update();
 }
 
 void Player::Draw()
@@ -70,6 +112,10 @@ void Player::Draw()
 	MV1DrawModel(m_modelHandle);
 #ifdef _DEBUG
 	m_sphere.Draw();
+
+	DrawFormatString(0, 50, 0xffffff, L"vel.x:%f", m_vel.x);
+	DrawFormatString(0, 50 + 16, 0xffffff, L"vel.z:%f", m_vel.z);
+	DrawFormatString(0, 50 + 16 * 2, 0xffffff, L"state:%d", m_state);
 #endif
 }
 
@@ -141,4 +187,10 @@ void Player::Jump()
 		m_vel.y = kJumpPower;
 		m_isGround = false;
 	}
+}
+
+bool Player::TriggeredChangeState(State state) const
+{
+	if (m_state == state && m_prevState != state) return true;
+	return false;
 }
