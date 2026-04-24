@@ -57,6 +57,17 @@ void Player::Update()
 	// ジャンプ処理
 	Jump();
 
+	// 落下中なら下り坂処理
+	if (m_vel.y < 0.0f)
+	{
+		Vector3 lineEnd = m_pos + Vector3(0.0f, -20.0f, 0.0f);
+		auto result = MV1CollCheck_Line(m_mapHandle, -1, m_pos.ToDxLib(), lineEnd.ToDxLib());
+		if (result.HitFlag)
+		{
+			m_pos = Vector3::FromDxLib(result.HitPosition);
+		}
+	}
+
 	// 位置に速度を足す
 	m_pos += m_vel;
 

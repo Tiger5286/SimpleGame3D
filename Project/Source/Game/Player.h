@@ -21,6 +21,7 @@ public:
 	Vector3 GetPos() const { return m_pos; }
 	const Sphere& GetSphere() const { return m_sphere; }
 
+	void SetMapHandle(int handle) { m_mapHandle = handle; }
 	void SetCameraAngle(float cameraAngle) { m_cameraAngle = cameraAngle; }
 
 	enum class State
@@ -43,6 +44,7 @@ private:
 	Input& m_input;
 
 	int m_modelHandle = -1;
+	int m_mapHandle = -1;
 
 	Animation m_anim;
 
