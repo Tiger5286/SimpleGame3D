@@ -1,4 +1,4 @@
-#include "Player.h"
+﻿#include "Player.h"
 #include "../System/Input.h"
 #include "../Utility/Matrix4x4.h"
 #include <cmath>
@@ -58,9 +58,9 @@ void Player::Update()
 	Jump();
 
 	// 落下中なら下り坂処理
-	if (m_vel.y < 0.0f)
+	if (m_vel.y < 0.0f && m_isGround)
 	{
-		Vector3 lineEnd = m_pos + Vector3(0.0f, -20.0f, 0.0f);
+		Vector3 lineEnd = m_pos + Vector3(0.0f, -30.0f, 0.0f);
 		auto result = MV1CollCheck_Line(m_mapHandle, -1, m_pos.ToDxLib(), lineEnd.ToDxLib());
 		if (result.HitFlag)
 		{
