@@ -27,7 +27,7 @@ namespace
 
 	// カメラのX軸回転の上限と下限
 	constexpr float kMaxAngleX = DX_PI_F / 2.0f - 0.1f;
-	constexpr float kMinAngleX = -DX_PI_F / 10.0f;
+	constexpr float kMinAngleX = -DX_PI_F / 2.0f - 0.1f;
 }
 
 Camera::Camera(Input& input):
@@ -67,7 +67,7 @@ void Camera::Update()
 	if (m_angleX < kMinAngleX) m_angleX = kMinAngleX;
 
 	// プレイヤーの位置をもとにカメラの位置と注視点を設定
-	
+
 	// 注視点を設定
 	m_target = m_playerPos + kTargetOffset;
 	// 位置を設定
@@ -84,6 +84,16 @@ void Camera::Update()
 	auto mtx = transMtx * rotYMtx * rotXMtx;
 	// ベクトルを変形
 	pos = mtx * pos;
+
+	// オブジェクトとの当たり判定
+	// 線の当たり判定を行う
+	auto result = MV1CollCheck_Line(m_mapHandle, -1, m_target.ToDxLib(), pos.ToDxLib());
+	if (result.HitFlag)
+	{
+		pos = Vector3::FromDxLib(result.HitPosition);
+	}
+
+	// 位置を設定
 	m_pos = pos;
 
 	// 位置と注視点を反映

@@ -25,6 +25,7 @@ void SceneMain::Init()
 	m_pInput = std::make_shared<Input>();
 
 	m_pCamera = std::make_shared<Camera>(*m_pInput);
+	m_pCamera->SetMapHandle(m_mapHandle);
 	m_pCamera->Init();
 
 	m_pPlayer = std::make_shared<Player>(*m_pInput);

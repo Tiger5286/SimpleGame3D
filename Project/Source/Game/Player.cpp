@@ -71,6 +71,13 @@ void Player::Update()
 	// 位置に速度を足す
 	m_pos += m_vel;
 
+	// 奈落に落ちたら原点に戻す
+	if (m_pos.y < -1000.0f)
+	{
+		m_pos = Vector3(0.0f, 0.0f, 0.0f);
+		m_vel = Vector3(0.0f, 0.0f, 0.0f);
+	}
+
 	// 行列を生成
 	auto rotMtx = Matrix4x4::GetRotY(m_angle);
 	auto transMtx = Matrix4x4::GetTranslate(m_pos);

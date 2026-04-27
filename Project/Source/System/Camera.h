@@ -17,11 +17,14 @@ public:
 	Vector3 GetPos() const { return m_pos; }
 	void SetPos(const Vector3& pos) { m_pos = pos; }
 
+	void SetMapHandle(int handle) { m_mapHandle = handle; }
 	void SetPlayerPos(const Vector3& playerPos) { m_playerPos = playerPos; }
 
 private:
 	Input& m_input;
 	Vector3 m_playerPos;
+
+	int m_mapHandle = -1;
 
 	Vector3 m_pos;
 	Vector3 m_target;
