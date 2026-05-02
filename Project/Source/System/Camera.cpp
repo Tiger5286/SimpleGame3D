@@ -94,7 +94,7 @@ void Camera::Update()
 	}
 
 	// 位置を設定
-	m_pos = pos;
+	m_pos.Lerp(pos, 0.2f);
 
 	// 位置と注視点を反映
 	SetCameraPositionAndTarget_UpVecY(m_pos.ToDxLib(), m_target.ToDxLib());
