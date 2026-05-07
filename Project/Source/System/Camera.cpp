@@ -12,8 +12,8 @@ namespace
 	// 視野角
 	constexpr float kFov = DX_PI_F / 3.0f;	// 60度
 	// NearFar
-	constexpr float kNear = 100.0f;
-	constexpr float kFar = 5000.0f;
+	constexpr float kNear = 10.0f;
+	constexpr float kFar = 4000.0f;
 
 	// オフセット
 	const Vector3 kTargetOffset = { 0.0f,100.0f,0.0f };
@@ -28,6 +28,9 @@ namespace
 	// カメラのX軸回転の上限と下限
 	constexpr float kMaxAngleX = DX_PI_F / 2.0f - 0.1f;
 	constexpr float kMinAngleX = -DX_PI_F / 2.0f - 0.1f;
+
+	// カメラとオブジェクトとの隙間の大きさ
+	constexpr float kObjectDistance = 50.0f;
 }
 
 Camera::Camera(Input& input):
@@ -90,7 +93,15 @@ void Camera::Update()
 	auto result = MV1CollCheck_Line(m_mapHandle, -1, m_target.ToDxLib(), pos.ToDxLib());
 	if (result.HitFlag)
 	{
-		pos = Vector3::FromDxLib(result.HitPosition);
+		// 線とオブジェクトが当たった位置を取得
+		Vector3 hitPos = Vector3::FromDxLib(result.HitPosition);
+
+		// 当たった位置から注視点方向に定数分ずらす
+		Vector3 vec = m_target - hitPos;
+		vec.Normalize();
+		vec *= kObjectDistance;
+
+		pos = hitPos + vec;
 	}
 
 	// 位置を設定
